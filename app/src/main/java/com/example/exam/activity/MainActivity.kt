@@ -9,12 +9,17 @@ import com.example.exam.adapter.MovieAdapter
 import com.example.exam.MovieViewModel
 import com.example.exam.databinding.ActivityMainBinding
 import com.example.movieapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MovieViewModel by viewModels()
     private lateinit var movieAdapter: MovieAdapter
 
+    private fun searchMovies(query: String) {
+        CoroutineScope(Dispatchers)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
