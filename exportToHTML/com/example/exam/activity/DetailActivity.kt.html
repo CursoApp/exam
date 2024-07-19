@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>DetailActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DetailActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.exam.activity</span>
+
+<span class="s1">import android.os.Bundle</span>
+<span class="s1">import androidx.appcompat.app.AppCompatActivity</span>
+<span class="s1">import com.example.exam.data.Movie</span>
+<span class="s1">import com.example.exam.databinding.ActivityDetailBinding</span>
+<span class="s1">import com.squareup.picasso.Picasso</span>
+
+
+
+<span class="s0">class </span><span class="s1">DetailActivity : AppCompatActivity() {</span>
+    <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">binding: ActivityDetailBinding</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate(savedInstanceState: Bundle?) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span>
+        <span class="s1">binding = ActivityDetailBinding.inflate(layoutInflater)</span>
+        <span class="s1">setContentView(binding.root)</span>
+
+        <span class="s0">val </span><span class="s1">movie = intent.getStringExtra(</span><span class="s2">&quot;movie&quot;</span><span class="s1">)</span>
+
+        <span class="s1">movie?.let {</span>
+            <span class="s1">binding.titleTextView.text = it.title</span>
+            <span class="s1">binding.yearTextView.text = it.releaseDate.split(</span><span class="s2">&quot;-&quot;</span><span class="s1">)[</span><span class="s3">0</span><span class="s1">]</span>
+            <span class="s1">binding.overviewTextView.text = it.overview</span>
+            <span class="s1">binding.runtimeTextView.text = </span><span class="s2">&quot;Duration: </span><span class="s0">${</span><span class="s1">it.runtime</span><span class="s0">} </span><span class="s2">minutes&quot;</span>
+            <span class="s1">binding.directorTextView.text = </span><span class="s2">&quot;Director: </span><span class="s0">${</span><span class="s1">it.director</span><span class="s0">}</span><span class="s2">&quot;</span>
+            <span class="s1">binding.genresTextView.text = </span><span class="s2">&quot;Genres: </span><span class="s0">${</span><span class="s1">it.genres.joinToString(</span><span class="s2">&quot;, &quot;</span><span class="s1">)</span><span class="s0">}</span><span class="s2">&quot;</span>
+            <span class="s1">binding.countryTextView.text = </span><span class="s2">&quot;Country: </span><span class="s0">${</span><span class="s1">it.country</span><span class="s0">}</span><span class="s2">&quot;</span>
+            <span class="s1">Picasso.get().load(</span><span class="s2">&quot;https://image.tmdb.org/t/p/w500/</span><span class="s0">${</span><span class="s1">it.posterPath</span><span class="s0">}</span><span class="s2">&quot;</span><span class="s1">).into(binding.posterImageView)</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
